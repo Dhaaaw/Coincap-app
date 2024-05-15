@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import ListPage from "./components/ListPage";
+import DashboardPage from "./components/DashboardPage";
+import DetailsPage from "./components/DetailsPage";
+import { DataProvider } from "./context/DataContext";
+import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataProvider>
+      <Router>
+        <nav className="navbar">
+          <Link to="/">List</Link>
+          <Link to="/dashboard">Dashboard</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<ListPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/details/:id" element={<DetailsPage />} />
+        </Routes>
+      </Router>
+    </DataProvider>
   );
-}
+};
 
 export default App;
