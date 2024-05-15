@@ -31,11 +31,22 @@ const ListPage: React.FC = () => {
           </li>
         ))}
       </ul>
+      <button onClick={() => setPage(1)} disabled={page === 1}>
+        Page 1
+      </button>
       <button onClick={() => setPage((prev) => prev - 1)} disabled={page === 1}>
         Previous
       </button>
       Page number : {page}
-      <button onClick={() => setPage((prev) => prev + 1)}>Next</button>
+      <button
+        onClick={() => setPage((prev) => prev + 1)}
+        disabled={page === 230}
+      >
+        Next
+      </button>
+      <button onClick={() => setPage(230)} disabled={page === 230}>
+        Last Page
+      </button>
     </div>
   );
 };
